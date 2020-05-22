@@ -3,7 +3,7 @@ import axios from 'axios';
 let api = 'api'
 let form = 'form'
 
-let base = 'base'
+let base = 'no-login'
 
 /**
  * 获取注册验证码

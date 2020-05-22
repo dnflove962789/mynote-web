@@ -7,19 +7,22 @@ const config = {
     }
 }
 
-var checkAge = (rule, value, callback) => {
-    if (!value) {
-      return callback(new Error('年龄不能为空'));
-    }
-    setTimeout(() => {
-      if (!Number.isInteger(value)) {
-        callback(new Error('请输入数字值'));
-      } else {
-        if (value < 18) {
-          callback(new Error('必须年满18岁'));
-        } else {
-          callback();
-        }
-      }
-    }, 1000);
-  };
+const format = {
+  emailFormat: new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\])|(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,}))$"),
+  isEmail(email){
+		return this.emailFormat.test(email);
+  },
+  codeFormat:new RegExp("^[a-zA-Z0-9]{6}$"),
+	isCode(code){
+		return this.codeFormat.test(code);
+	},
+	passwordFormat:new RegExp("^[0-9A-Za-z]{6,16}$"),
+	isPassword(password){
+		return this.passwordFormat.test(password);
+	},
+	pattern: "yyyy-MM-dd"
+}
+
+export{
+  config,format
+}
