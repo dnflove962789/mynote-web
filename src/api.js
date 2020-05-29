@@ -16,10 +16,10 @@ export const req_getCodeForRegister = (email) => {
     }).then(res => res.data).catch(err => err)
 }
 
-export const req_register = (user) => {
+export const req_register = (userInfo) => {
     return axios.post(nologin + '/register', {
-        email: user.email,
-        password: user.password,
-        code: user.code
+        email: userInfo.email,
+        password: userInfo.password,
+        code: userInfo.code
     }).then(res => res.data).catch(err => err)
 }
