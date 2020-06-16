@@ -2,6 +2,7 @@
   <el-row type="flex" justify="center" align="middle" class="marjor-container">
     <el-col :span="6" class="little-container">
       <h2>MyNote</h2>
+
       <el-row>
         <el-steps :active="step" finish-status="success">
           <el-step title="验证邮箱"></el-step>
@@ -48,6 +49,13 @@
           </el-form-item>
         </el-form>
       </el-row>
+
+      <el-row>
+              <el-col :span="8">
+                <el-button type="text" @click="toLogin()">用户登录</el-button>
+              </el-col>
+              
+      </el-row>
     </el-col>
   </el-row>
 </template>
@@ -63,6 +71,12 @@ export default {
       }
       //用于修改按钮为可用
       this.$data.getCodeBtnDisabled = false;
+      callback();
+    };
+    var validatePassword = (rule, value, callback) => {
+      if (!format.isPassword(value)) {
+        return callback(new Error("请输入正确的密码格式"));
+      }
       callback();
     };
     return {
@@ -82,6 +96,10 @@ export default {
             message: "请输入正确的邮箱地址",
             trigger: "blur,change"
           }
+        ],
+        password: [
+            {required: true, message: "请输入密码", trigger: 'blur'},
+             { validator: validatePassword, trigger: 'blur' }
         ]
       }
     };
@@ -151,6 +169,9 @@ export default {
           return false;
         }
       });
+    },
+    toLogin() {
+      this.$router.push({path: "/Login"})
     }
   }
 };

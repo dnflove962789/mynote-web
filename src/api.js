@@ -23,3 +23,11 @@ export const req_register = (userInfo) => {
         code: userInfo.code
     }).then(res => res.data).catch(err => err)
 }
+
+export const req_login = (userInfo) => {
+    return axios.post(nologin + '/login', {
+        email: userInfo.email,
+        password: userInfo.password,
+        type: 0
+    }).then(res => res.data).catch(err => err)
+}
